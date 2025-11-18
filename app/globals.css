@@ -10,7 +10,91 @@
   --color-foreground: var(--foreground);
 }
 
+/* Responsive utility classes */
+@media (max-width: 678px) {
+  /* column 1 styles */
+  div.Column-module_col-end-5__6yPd4.Column-module_col-start-1__xylw6 div div {
+    flex-direction: column;
+  }
+  /* column 1 styles */
 
+  /* column 2 styles */
+  div.Column-module_col-end-9__tpIGv.Column-module_col-start-5__jlV8e div div {
+    flex-direction: column;
+  }
+  /* column 2 styles */
+
+    /* column 3 styles */
+  div.Column-module_col-end-13__L-nK9.Column-module_col-start-9__Kcv9X div div {
+    flex-direction: column;
+  }
+  /* column 3 styles */
+}
+
+@media (max-width: 1024px) {
+  /* column 1 styles */
+  div.Column-module_col-end-5__6yPd4.Column-module_col-start-1__xylw6 {
+    grid-column-end: 13 !important;
+    grid-column-start: 1 !important;
+  }
+
+  div.Column-module_col-end-5__6yPd4.Column-module_col-start-1__xylw6 div div {
+    display: flex;
+    grid-column-end: 13 !important;
+    grid-column-start: 1 !important;
+    gap: 16px;
+  }
+
+  div.Column-module_col-end-5__6yPd4.Column-module_col-start-1__xylw6
+    div
+    div
+    div {
+    flex: 1;
+  }
+  /* column 1 styles */
+
+  /* column 2 styles */
+  div.Column-module_col-end-9__tpIGv.Column-module_col-start-5__jlV8e {
+    grid-column-end: 13 !important;
+    grid-column-start: 1 !important;
+  }
+
+  div.Column-module_col-end-9__tpIGv.Column-module_col-start-5__jlV8e div div {
+    display: flex;
+    grid-column-end: 13 !important;
+    grid-column-start: 1 !important;
+    gap: 16px;
+  }
+
+  div.Column-module_col-end-9__tpIGv.Column-module_col-start-5__jlV8e
+    div
+    div
+    div {
+    flex: 1;
+  }
+  /* column 2 styles */
+
+  /* column 3 styles */
+  div.Column-module_col-end-13__L-nK9.Column-module_col-start-9__Kcv9X {
+    grid-column-end: 13 !important;
+    grid-column-start: 1 !important;
+  }
+
+  div.Column-module_col-end-13__L-nK9.Column-module_col-start-9__Kcv9X div div {
+    display: flex;
+    grid-column-end: 13 !important;
+    grid-column-start: 1 !important;
+    gap: 16px;
+  }
+
+  div.Column-module_col-end-13__L-nK9.Column-module_col-start-9__Kcv9X
+    div
+    div
+    div {
+    flex: 1;
+  }
+  /* column 3 styles */
+}
 
 body {
   background: var(--background);

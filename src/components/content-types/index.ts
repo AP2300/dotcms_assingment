@@ -1,4 +1,6 @@
 import ActivityCard from "./Activity";
 import Hero from "./Hero";
+import Product from "./Product";
+import YouTube from "./Youtube";
 
-export const contentTypesComponents = { Banner: Hero, Activity:ActivityCard };
+export const contentTypesComponents = { Banner: Hero, Activity: ActivityCard, Product: Product, YouTube: YouTube };

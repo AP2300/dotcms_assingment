@@ -27,7 +27,7 @@ const ActivityCard = ({
 
   return (
     <motion.article
-      className="group relative my-4 w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+      className="group relative lg:mt-4 w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
       onClick={() => {
         router.push(urlMap ?? "/");
       }}
@@ -49,7 +49,7 @@ const ActivityCard = ({
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 loader={imageLoader}
-                className="object-cover"
+                className="object-cover object-top md:object-center"
                 onError={() => setImageError(true)}
               />
             )}

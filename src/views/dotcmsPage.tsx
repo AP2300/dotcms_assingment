@@ -16,7 +16,7 @@ const DotCMSPage = ({ pageAsset, navigation, content }: DotCMSPageProps) => {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center">
       {pageAsset?.layout.header && <Navbar navItems={navigation} />}
-      <main className="flex-1 w-full container px-4 sm:px-0">
+      <main className="flex-1 flex flex-col gap-12 w-full container px-4 sm:px-0">
         {pageAsset && (
           <DotCMSLayoutBody
             page={pageAsset}

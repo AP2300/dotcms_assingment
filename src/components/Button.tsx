@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 interface ButtonProps {
   children: ReactNode;
   href?: string;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   className?: string;
@@ -23,7 +23,7 @@ const Button = ({
   className = "",
   disabled = false,
 }: ButtonProps) => {
-  const baseStyles = "inline-flex items-center justify-center font-medium rounded-2xl hover:rounded-4xl ease-in-out transition-all cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "inline-flex gap-1.5 items-center justify-center font-medium rounded-2xl hover:rounded-4xl ease-in-out transition-all cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variants = {
     primary: "bg-slate-500 text-white hover:bg-slate-700 shadow-lg hover:shadow-xl",
