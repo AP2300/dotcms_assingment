@@ -1,6 +1,6 @@
 "use client";
 
-import { DotCMSLayoutBody } from "@dotcms/react";
+import { DotCMSLayoutBody, useEditableDotCMSPage } from "@dotcms/react";
 import { DotCMSPageRendererMode } from "@dotcms/types";
 import { contentTypesComponents } from "@/src/components/content-types";
 import Navbar from "@/src/components/Navbar";
@@ -10,13 +10,17 @@ interface DotCMSPageProps {
   pageAsset: any;
   navigation?: any;
   content?: any;
+  graphql: any;
 }
 
-const DotCMSPage = ({ pageAsset, navigation, content }: DotCMSPageProps) => {
+const DotCMSPage = (pageContent: DotCMSPageProps) => {
+  const { navigation } = pageContent;
+  const { content, pageAsset } = useEditableDotCMSPage(pageContent);
+
   return (
     <div className="flex flex-col min-h-screen items-center justify-center">
       {pageAsset?.layout.header && <Navbar navItems={navigation} />}
-      <main className="flex-1 flex flex-col gap-12 w-full container px-4 sm:px-0">
+      <main className="flex-1 flex flex-col gap-12 w-full container px-4 xl:px-0">
         {pageAsset && (
           <DotCMSLayoutBody
             page={pageAsset}
@@ -28,7 +32,9 @@ const DotCMSPage = ({ pageAsset, navigation, content }: DotCMSPageProps) => {
           />
         )}
       </main>
-      {pageAsset?.layout.footer && <Footer navItems={navigation} {...content} />}
+      {pageAsset?.layout.footer && (
+        <Footer navItems={navigation} {...(typeof content === "object" && content !== null ? content : {})} />
+      )}
     </div>
   );
 };

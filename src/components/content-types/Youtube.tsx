@@ -38,7 +38,7 @@ const YouTube = (props: YouTubeProps) => {
 
     return (
         <div 
-            className={`max-w-4xl hover:p-0 overflow-hidden ${isPlaying ? "p-0" : "p-2"} border border-white/10 rounded-2xl mb-4 relative h-96 transition-all duration-500 ease-in-out`}
+            className={`hover:p-0 overflow-hidden ${isPlaying ? "p-0" : "p-2"} border border-white/10 rounded-2xl mb-4 relative h-96 transition-all duration-500 ease-in-out`}
             
         >
             <div className="h-full mb-4 relative">

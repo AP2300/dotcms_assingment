@@ -27,6 +27,10 @@ const blogQuery = `
         title
         identifier
         ... on Blog {
+        inode
+            image {
+                fileName
+            }
             urlMap
             modDate
             urlTitle

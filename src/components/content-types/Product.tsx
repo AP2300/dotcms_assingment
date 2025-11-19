@@ -42,7 +42,7 @@ const Product = ({
 
   return (
     <motion.article
-      className="group relative w-full flex flex-col gap-6 p-3 mt-4 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 border border-white/10 hover:border-white/30"
+      className="group relative w-full flex flex-col gap-6 p-3 mb-4 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 border border-white/10 hover:border-white/30"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-200px" }}

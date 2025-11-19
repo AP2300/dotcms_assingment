@@ -27,11 +27,13 @@ const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
   // Check if screen is desktop size (lg breakpoint = 1024px)
   useState(() => {
     const checkDesktop = () => {
-      setIsDesktop(window?.innerWidth >= 1024);
+      if (typeof window !== "undefined") {
+        setIsDesktop(window.innerWidth >= 1024);
+      }
+      checkDesktop();
+      window.addEventListener('resize', checkDesktop);
     };
     
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
     return () => window.removeEventListener('resize', checkDesktop);
   });
 
@@ -85,6 +87,7 @@ const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
                 priority
                 unoptimized
                 loader={imageLoader}
+                loading="eager"
               />
             </motion.div>
           </Link>
