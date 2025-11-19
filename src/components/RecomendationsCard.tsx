@@ -1,18 +1,9 @@
 import Link from "next/link";
-
-interface RecommendationsCardProps {
-  title: string;
-  subtitle?: string;
-  image?: string;
-  inode?: string;
-  urlMap?: string;
-}
+import { RecommendationsCardProps } from "@/src/types";
 
 const RecommendationsCard = ({
   title,
   subtitle,
-  image,
-  inode,
   urlMap,
 }: RecommendationsCardProps) => {
   return (

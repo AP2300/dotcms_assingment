@@ -5,15 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import imageLoader from "../../utils/imageLoader";
 import Button from "../Button";
-
-interface HeroProps {
-  title: string;
-  caption: string;
-  inode: string;
-  image: string;
-  link: string;
-  buttonText: string;
-}
+import { HeroProps } from "@/src/types";
 
 const Hero = ({
   title = "Welcome",
@@ -36,7 +28,7 @@ const Hero = ({
           className="absolute inset-0 z-0 h-[70dvh] md:min-h-[70vh]"
         >
           <Image
-            src={inode}
+            src={inode!}
             alt={title}
             fill
             priority

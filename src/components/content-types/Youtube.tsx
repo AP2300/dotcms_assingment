@@ -2,20 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface YouTubeProps {
-    content?: {
-        id?: string;
-        title?: string;
-        author?: string;
-        length?: string;
-        thumbnailLarge?: string;
-    };
-    id?: string;
-    title?: string;
-    author?: string;
-    length?: string;
-}
+import { YouTubeProps } from "@/src/types";
 
 const YouTube = (props: YouTubeProps) => {
     const [isPlaying, setIsPlaying] = useState(false);

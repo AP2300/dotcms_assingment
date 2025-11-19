@@ -1,19 +1,6 @@
 'use client';
 
-/**
- * Parameters for the DotCMS image loader.
- */
-interface ImageLoaderParams {
-  /** The source path or URL of the image */
-  src: string;
-  /** The desired width of the image in pixels */
-  width: number | string;
-  /** The desired height of the image in pixels */
-  height?: number | string;
-  /** The quality of the image (1-100). Defaults to 75 */
-  quality?: number | string;
-}
-
+import { ImageLoaderParams } from "../types";
 
 const DOTCMS_ASSET_PATH = '/dA/';
 

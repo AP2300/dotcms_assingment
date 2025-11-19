@@ -4,15 +4,7 @@ import { useState } from "react";
 import imageLoader from "@/src/utils/imageLoader";
 import { useRouter } from "next/navigation";
 import Button from "../Button";
-
-interface ActivityCardProps {
-  title: string;
-  description?: string;
-  shortDescription?: string;
-  image?: string;
-  inode?: string;
-  urlMap?: string;
-}
+import { ActivityCardProps } from "@/src/types";
 
 const ActivityCard = ({
   title,

@@ -9,25 +9,7 @@ import BlogCard from "@/src/components/blog-components/BlogCard";
 import { LoadingState } from "@/src/components/blog-components/LoadingState";
 import { EmptyState } from "@/src/components/blog-components/ErrorState";
 import SearchBar from "../components/blog-components/SearchBar";
-
-interface DotCMSPageProps {
-  pageAsset: any;
-  navigation?: any;
-  content?: any;
-  graphql: any;
-}
-
-interface Blog {
-  identifier: string;
-  title: string;
-  teaser?: string;
-  description?: string;
-  image?: string;
-  inode?: string;
-  urlMap?: string;
-  modDate?: string;
-  author?: Array<{ firstName: string; lastName: string; inode: string }>;
-}
+import { DotCMSPageProps, Blog } from "@/src/types";
 
 const BlogList = (pageResponse: DotCMSPageProps) => {
   const { navigation, content } = pageResponse;
@@ -112,19 +94,23 @@ const BlogList = (pageResponse: DotCMSPageProps) => {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <AnimatePresence mode="popLayout">
-                {filteredBlogs.map((blog: Blog) => (
-                  <BlogCard
-                    key={blog.identifier}
-                    title={blog.title}
-                    teaser={blog.teaser}
-                    description={blog.description}
-                    image={blog.image}
-                    inode={blog.inode}
-                    urlMap={blog.urlMap}
-                    postingDate={blog.modDate}
-                    author={blog.author?.[0] || { firstName: "", lastName: "", inode: "" }}
-                  />
-                ))}
+                {filteredBlogs.map((blog: Blog) => {
+                  const author = Array.isArray(blog.author) ? blog.author[0] : blog.author;
+                  return (
+                    <BlogCard
+                      key={blog.identifier}
+                      identifier={blog.identifier}
+                      title={blog.title}
+                      teaser={blog.teaser}
+                      description={blog.description}
+                      image={blog.image}
+                      inode={blog.inode}
+                      urlMap={blog.urlMap}
+                      postingDate={blog.postingDate || blog.modDate}
+                      author={author}
+                    />
+                  );
+                })}
               </AnimatePresence>
             </div>
           </>

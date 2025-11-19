@@ -1,11 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-interface LoadingStateProps {
-  count?: number;
-  type?: "grid" | "list";
-}
+import { LoadingStateProps } from "@/src/types";
 
 export const LoadingState = ({ count = 6, type = "grid" }: LoadingStateProps) => {
   return (
@@ -56,23 +52,5 @@ const SkeletonCard = ({ delay = 0, type = "grid" }: { delay?: number; type?: "gr
         <div className="h-10 bg-gray-800 rounded animate-pulse" />
       </div>
     </motion.div>
-  );
-};
-
-export const LoadingSpinner = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
-  const sizeClasses = {
-    sm: "w-6 h-6 border-2",
-    md: "w-10 h-10 border-4",
-    lg: "w-16 h-16 border-4",
-  };
-
-  return (
-    <div className="flex justify-center py-8">
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-        className={`${sizeClasses[size]} border-amber-400 border-t-transparent rounded-full`}
-      />
-    </div>
   );
 };

@@ -6,17 +6,7 @@ import { useState } from "react";
 import imageLoader from "@/src/utils/imageLoader";
 import { useRouter } from "next/navigation";
 import Button from "../Button";
-
-interface BlogCardProps {
-  title: string;
-  description?: string;
-  teaser?: string;
-  image?: string;
-  inode?: string;
-  urlMap?: string;
-  postingDate?: string;
-  author?: { firstName: string; lastName: string; inode: string };
-}
+import { BlogCardProps } from "@/src/types";
 
 const BlogCard = ({
   title,
@@ -90,11 +80,14 @@ const BlogCard = ({
             <div className="flex items-center gap-2 text-xs text-gray-400">
               {formattedDate && <span>{formattedDate}</span>}
               {formattedDate && author && <span>•</span>}
-              {author && (
-                <span>
-                  By {author.firstName} {author.lastName}
-                </span>
-              )}
+              {author && (() => {
+                const authorData = Array.isArray(author) ? author[0] : author;
+                return authorData ? (
+                  <span>
+                    By {authorData.firstName} {authorData.lastName}
+                  </span>
+                ) : null;
+              })()}
             </div>
           )}
           {/* Title */}

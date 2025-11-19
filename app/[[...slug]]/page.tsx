@@ -1,22 +1,8 @@
 import { getPage } from "@/src/utils/getPage";
 import NotFound from "@/app/not-found";
 import DotCMSPage from "@/src/views/DotcmsPage";
-
-interface PageProps {
-  params: Promise<{
-    slug?: string[];
-  }>;
-}
-
-interface GenerateMetadataProps {
-  params: Promise<{
-    slug?: string[];
-  }>;
-}
-
-interface Metadata {
-  title: string;
-}
+import { redirect } from "next/navigation";
+import { PageProps, GenerateMetadataProps, Metadata } from "@/src/types";
 
 export async function generateMetadata(
   props: GenerateMetadataProps

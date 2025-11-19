@@ -2,17 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ReactNode } from "react";
-
-interface ButtonProps {
-  children: ReactNode;
-  href?: string;
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
-  className?: string;
-  disabled?: boolean;
-}
+import { ButtonProps } from "@/src/types";
 
 const Button = ({
   children,

@@ -1,11 +1,7 @@
 // Search Bar Component
-const SearchBar = ({
-  searchQuery,
-  setSearchQuery,
-}: {
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-}) => {
+import { SearchBarProps } from "@/src/types";
+
+const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="relative">

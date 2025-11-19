@@ -6,13 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
-interface NavItem {
-  folder: string;
-  href: string;
-  target?: string;
-  title: string;
-}
+import { NavItem } from "@/src/types";
 
 const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

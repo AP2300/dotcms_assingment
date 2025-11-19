@@ -5,27 +5,7 @@ import imageLoader from "../utils/imageLoader";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import RecommendationsCard from "./RecomendationsCard";
-
-interface NavItem {
-  folder: string;
-  href: string;
-  target?: string;
-  title: string;
-}
-
-interface Blog {
-  title: string;
-  identifier: string;
-  urlMap: string;
-  modDate: string;
-}
-
-interface Destination {
-  title: string;
-  identifier: string;
-  urlMap: string;
-  modDate: string;
-}
+import { Blog, Destination, NavItem } from "@/src/types";
 
 const Footer = ({
   navItems,

@@ -6,15 +6,7 @@ import { useState } from "react";
 import imageLoader from "@/src/utils/imageLoader";
 import { useRouter } from "next/navigation";
 import Button from "../Button";
-
-interface ProductProps {
-  title: string;
-  description?: string;
-  image?: string;
-  inode?: string;
-  retailPrice?: number;
-  urlMap?: string;
-}
+import { ProductProps } from "@/src/types";
 
 const Product = ({
   title,

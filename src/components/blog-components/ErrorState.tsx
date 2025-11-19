@@ -2,12 +2,7 @@
 
 import { motion } from "framer-motion";
 import Button from "../Button";
-
-interface ErrorStateProps {
-  message?: string;
-  onRetry?: () => void;
-  showRetry?: boolean;
-}
+import { ErrorStateProps, EmptyStateProps } from "@/src/types";
 
 export const ErrorState = ({
   message = "Something went wrong. Please try again later.",
@@ -68,13 +63,7 @@ export const EmptyState = ({
   onClear,
   showClearButton = false,
   icon = "search",
-}: {
-  title?: string;
-  description?: string;
-  onClear?: () => void;
-  showClearButton?: boolean;
-  icon?: "search" | "empty" | "sad";
-}) => {
+}: EmptyStateProps) => {
   const icons = {
     search: (
       <path
