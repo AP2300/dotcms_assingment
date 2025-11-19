@@ -15,6 +15,8 @@ export const ErrorState = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
       className="text-center py-12"
+      role="alert"
+      aria-live="assertive"
     >
       <div className="inline-flex flex-col items-center gap-6 px-8 py-8 bg-red-500/10 border border-red-500/30 rounded-2xl">
         <svg
@@ -22,6 +24,7 @@ export const ErrorState = ({
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -41,6 +44,7 @@ export const ErrorState = ({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -97,12 +101,15 @@ export const EmptyState = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
       className="text-center py-16"
+      role="status"
+      aria-live="polite"
     >
       <svg
         className="w-24 h-24 mx-auto mb-6 text-gray-600"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
+        aria-hidden="true"
       >
         {icons[icon]}
       </svg>

@@ -22,6 +22,9 @@ export default function RootLayout({
       <body
         className={`${readexPro.className} antialiased`}
       >
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

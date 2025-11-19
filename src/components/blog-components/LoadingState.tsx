@@ -5,10 +5,16 @@ import { LoadingStateProps } from "@/src/types";
 
 export const LoadingState = ({ count = 6, type = "grid" }: LoadingStateProps) => {
   return (
-    <div className={type === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-6"}>
+    <div 
+      className={type === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-6"}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading content"
+    >
       {[...Array(count)].map((_, i) => (
         <SkeletonCard key={i} delay={i * 0.1} type={type} />
       ))}
+      <span className="sr-only">Loading...</span>
     </div>
   );
 };
@@ -21,6 +27,7 @@ const SkeletonCard = ({ delay = 0, type = "grid" }: { delay?: number; type?: "gr
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay }}
         className="w-full p-6 rounded-xl bg-black/40 border border-white/10"
+        aria-hidden="true"
       >
         <div className="flex items-center gap-6">
           <div className="w-20 h-20 rounded-lg bg-gray-800 animate-pulse shrink-0" />
@@ -40,6 +47,7 @@ const SkeletonCard = ({ delay = 0, type = "grid" }: { delay?: number; type?: "gr
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       className="w-full rounded-2xl overflow-hidden bg-black/40 border border-white/10"
+      aria-hidden="true"
     >
       <div className="w-full h-56 bg-gray-800 animate-pulse" />
       <div className="p-6 space-y-4">

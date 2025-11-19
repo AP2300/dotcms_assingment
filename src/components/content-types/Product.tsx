@@ -102,6 +102,7 @@ const Product = ({
             onClick={handleAddToCart}
             className="flex-1"
             disabled={isAdding}
+            aria-label={isAdding ? "Adding to cart" : `Add ${title} to cart`}
           >
             {isAdding ? (
               <>
@@ -112,6 +113,7 @@ const Product = ({
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -129,6 +131,7 @@ const Product = ({
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -146,12 +149,14 @@ const Product = ({
             size="sm"
             variant="outline"
             onClick={handleViewDetails}
+            aria-label={`View details for ${title}`}
           >
             <svg
               className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

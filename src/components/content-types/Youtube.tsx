@@ -26,23 +26,32 @@ const YouTube = (props: YouTubeProps) => {
     return (
         <div 
             className={`hover:p-0 overflow-hidden ${isPlaying ? "p-0" : "p-2"} border border-white/10 rounded-2xl mb-4 relative h-96 transition-all duration-500 ease-in-out`}
-            
+            role="region"
+            aria-label={`YouTube video: ${title}`}
         >
             <div className="h-full mb-4 relative">
                 {!isPlaying && (
                     <div 
                         className="absolute inset-0 z-10 cursor-pointer"
                         onClick={handleOverlayClick}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Play video: ${title}`}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                handleOverlayClick(e as any);
+                            }
+                        }}
                     />
                 )}
                 <iframe
                     ref={setIframeRef}
                     src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1`}
-                    title={title}
+                    title={`${title} by ${author}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full rounded-lg hover:rounded-2xl shadow-lg relative z-0"
-                    
                 />
             </div>
 

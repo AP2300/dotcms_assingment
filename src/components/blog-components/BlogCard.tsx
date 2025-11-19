@@ -31,7 +31,7 @@ const BlogCard = ({
 
   return (
     <motion.article
-      className="group relative w-full flex flex-col rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-black/40 border border-white/10 hover:border-white/30 cursor-pointer"
+      className="group relative w-full h-full flex flex-col rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-black/40 border border-white/10 hover:border-white/30 cursor-pointer focus-within:ring-2 focus-within:ring-slate-400"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -40,6 +40,15 @@ const BlogCard = ({
       onClick={() => {
         if (urlMap) router.push(urlMap);
       }}
+      onKeyDown={(e) => {
+        if ((e.key === "Enter" || e.key === " ") && urlMap) {
+          e.preventDefault();
+          router.push(urlMap);
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label={`Read blog post: ${title}`}
     >
       {/* Image Section */}
       <div className="relative w-full h-56 bg-black/20 overflow-hidden">
@@ -112,6 +121,7 @@ const BlogCard = ({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

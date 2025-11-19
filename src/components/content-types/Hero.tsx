@@ -18,7 +18,10 @@ const Hero = ({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section className=" h-[70dvh] md:min-h-[70vh] flex items-end lg:items-center justify-center overflow-hidden">
+    <section 
+      className=" h-[70dvh] md:min-h-[70vh] flex items-end lg:items-center justify-center overflow-hidden"
+      aria-label="Hero section"
+    >
       {/* Background Image with Error Handling */}
       {image && !imageError && (
         <motion.div
@@ -26,6 +29,7 @@ const Hero = ({
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1 }}
           className="absolute inset-0 z-0 h-[70dvh] md:min-h-[70vh]"
+          aria-hidden="true"
         >
           <Image
             src={inode!}

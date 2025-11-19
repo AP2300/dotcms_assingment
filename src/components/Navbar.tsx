@@ -5,7 +5,7 @@ import imageLoader from "../utils/imageLoader";
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavItem } from "@/src/types";
 
 const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
@@ -19,17 +19,18 @@ const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
   });
 
   // Check if screen is desktop size (lg breakpoint = 1024px)
-  useState(() => {
+  useEffect(() => {
     const checkDesktop = () => {
       if (typeof window !== "undefined") {
         setIsDesktop(window.innerWidth >= 1024);
       }
-      checkDesktop();
-      window.addEventListener('resize', checkDesktop);
     };
-    
-    return () => window.removeEventListener('resize', checkDesktop);
-  });
+
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -97,8 +98,10 @@ const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
           {navItems && (
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 text-white hover:bg-slate-600/50 rounded-lg transition-colors"
-              aria-label="Toggle menu"
+              className="md:hidden p-2 text-white hover:bg-slate-600/50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-black"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? (
                 <svg
@@ -136,10 +139,13 @@ const Navbar = ({ navItems }: { navItems: NavItem[] }) => {
         {/* Mobile Navigation Menu */}
         {navItems && isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/90 backdrop-blur-xl rounded-xl shadow-xl overflow-hidden"
+            role="dialog"
+            aria-label="Mobile navigation menu"
           >
             <MobileNavigation
               navItems={navItems}
@@ -156,31 +162,36 @@ function Navigation({ navItems }: { navItems: NavItem[] }) {
   const pathname = usePathname();
 
   return (
-    <ul className="flex lg:gap-2 items-center justify-center">
-      <li>
-        <Link
-          href={{ pathname: "/" }}
-          className={`p-3 text-sm lg:text-base hover:bg-slate-600/50 transition-all ease-in-out rounded-2xl ${
-            pathname === "/" && "bg-slate-600"
-          }`}
-        >
-          Home
-        </Link>
-      </li>
-      {navItems.map(({ folder, href, target, title }) => (
-        <li key={folder}>
+    <nav aria-label="Main navigation">
+      <ul className="flex lg:gap-2 items-center justify-center">
+        <li>
           <Link
-            href={{ pathname: href }}
-            className={`p-3 text-sm lg:text-base hover:bg-slate-600/50 transition-all ease-in-out rounded-2xl ${
-              pathname === href && "bg-slate-600"
+            href={{ pathname: "/" }}
+            className={`p-3 text-sm lg:text-base hover:bg-slate-600/50 transition-all ease-in-out rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-400 ${
+              pathname === "/" && "bg-slate-600"
             }`}
-            target={target}
+            aria-current={pathname === "/" ? "page" : undefined}
           >
-            {title}
+            Home
           </Link>
         </li>
-      ))}
-    </ul>
+        {navItems.map(({ folder, href, target, title }) => (
+          <li key={folder}>
+            <Link
+              href={{ pathname: href }}
+              className={`p-3 text-sm lg:text-base hover:bg-slate-600/50 transition-all ease-in-out rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-400 ${
+                pathname === href && "bg-slate-600"
+              }`}
+              target={target}
+              aria-current={pathname === href ? "page" : undefined}
+              {...(target === "_blank" && { rel: "noopener noreferrer" })}
+            >
+              {title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
@@ -194,33 +205,40 @@ function MobileNavigation({
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-col p-4">
-      <li>
-        <Link
-          href={{ pathname: "/" }}
-          onClick={onItemClick}
-          className={`block p-4 hover:bg-slate-600/50 transition-all ease-in-out rounded-xl ${
-            pathname === "/" && "bg-slate-600"
-          }`}
-        >
-          Home
-        </Link>
-      </li>
-      {navItems.map(({ folder, href, target, title }) => (
-        <li key={folder}>
+    <nav aria-label="Mobile navigation">
+      <ul className="flex flex-col p-4" role="menu">
+        <li role="none">
           <Link
-            href={{ pathname: href }}
+            href={{ pathname: "/" }}
             onClick={onItemClick}
-            className={`block p-4 hover:bg-slate-600/50 transition-all ease-in-out rounded-xl ${
-              pathname === href && "bg-slate-600"
+            className={`block p-4 hover:bg-slate-600/50 transition-all ease-in-out rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-inset ${
+              pathname === "/" && "bg-slate-600"
             }`}
-            target={target}
+            role="menuitem"
+            aria-current={pathname === "/" ? "page" : undefined}
           >
-            {title}
+            Home
           </Link>
         </li>
-      ))}
-    </ul>
+        {navItems.map(({ folder, href, target, title }) => (
+          <li key={folder} role="none">
+            <Link
+              href={{ pathname: href }}
+              onClick={onItemClick}
+              className={`block p-4 hover:bg-slate-600/50 transition-all ease-in-out rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-inset ${
+                pathname === href && "bg-slate-600"
+              }`}
+              target={target}
+              role="menuitem"
+              aria-current={pathname === href ? "page" : undefined}
+              {...(target === "_blank" && { rel: "noopener noreferrer" })}
+            >
+              {title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 

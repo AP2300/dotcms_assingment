@@ -13,7 +13,7 @@ const Button = ({
   className = "",
   disabled = false,
 }: ButtonProps) => {
-  const baseStyles = "inline-flex gap-1.5 items-center justify-center font-medium rounded-2xl hover:rounded-4xl ease-in-out transition-all cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "inline-flex gap-1.5 items-center justify-center font-medium rounded-2xl hover:rounded-4xl ease-in-out transition-all cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-black";
   
   const variants = {
     primary: "bg-slate-500 text-white hover:bg-slate-700 shadow-lg hover:shadow-xl",
@@ -34,7 +34,11 @@ const Button = ({
       <div
         className="flex justify-center items-center gap-3"
       >
-        <Link href={href} className={buttonClasses}>
+        <Link 
+          href={href} 
+          className={buttonClasses}
+          {...(disabled && { "aria-disabled": "true", tabIndex: -1 })}
+        >
           {children}
         </Link>
       </div>

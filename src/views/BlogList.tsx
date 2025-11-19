@@ -40,13 +40,16 @@ const BlogList = (pageResponse: DotCMSPageProps) => {
     return () => clearTimeout(timer);
   }, [debouncedSearchQuery, allBlogs]);
 
-  console.log("Filtered Blogs:", filteredBlogs);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar navItems={navigation} />
 
-      <main className="flex-1 container mx-auto px-4 pb-24 mt-36 md:pt-44">
+      <main 
+        id="main-content"
+        className="flex-1 container mx-auto px-4 pb-24 mt-36 md:pt-44"
+        role="main"
+      >
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,6 +84,9 @@ const BlogList = (pageResponse: DotCMSPageProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="mb-6 text-sm text-gray-400"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
           >
             Showing {filteredBlogs.length} of {allBlogs.length} blog{allBlogs.length !== 1 ? "s" : ""}
           </motion.div>
@@ -92,23 +98,28 @@ const BlogList = (pageResponse: DotCMSPageProps) => {
         {/* Blog Grid */}
         {!isLoading && (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              role="list"
+              aria-label="Blog posts"
+            >
               <AnimatePresence mode="popLayout">
                 {filteredBlogs.map((blog: Blog) => {
                   const author = Array.isArray(blog.author) ? blog.author[0] : blog.author;
                   return (
-                    <BlogCard
-                      key={blog.identifier}
-                      identifier={blog.identifier}
-                      title={blog.title}
-                      teaser={blog.teaser}
-                      description={blog.description}
-                      image={blog.image}
-                      inode={blog.inode}
-                      urlMap={blog.urlMap}
-                      postingDate={blog.postingDate || blog.modDate}
-                      author={author}
-                    />
+                    <div key={blog.identifier} role="listitem">
+                      <BlogCard
+                        identifier={blog.identifier}
+                        title={blog.title}
+                        teaser={blog.teaser}
+                        description={blog.description}
+                        image={blog.image}
+                        inode={blog.inode}
+                        urlMap={blog.urlMap}
+                        postingDate={blog.postingDate || blog.modDate}
+                        author={author}
+                      />
+                    </div>
                   );
                 })}
               </AnimatePresence>

@@ -19,10 +19,19 @@ const ActivityCard = ({
 
   return (
     <motion.article
-      className="group relative lg:mt-4 w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+      className="group relative lg:mt-4 w-full h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer focus-within:ring-2 focus-within:ring-slate-400"
       onClick={() => {
         router.push(urlMap ?? "/");
       }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          router.push(urlMap ?? "/");
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label={`View details about ${title}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -52,7 +61,7 @@ const ActivityCard = ({
 
           {/* Title - Always Visible on Image */}
           <div className="absolute bottom-0 left-0 right-0 p-5">
-            <h3 className="text-2xl font-bold  group-hover:text-amber-300 transition-colors duration-300">
+            <h3 className="text-2xl font-bold  group-hover:text-transparent transition-colors duration-300">
               {title}
             </h3>
           </div>
@@ -84,6 +93,7 @@ const ActivityCard = ({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
