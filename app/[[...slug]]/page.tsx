@@ -1,8 +1,7 @@
 import { getPage } from "@/src/utils/getPage";
 import NotFound from "@/app/not-found";
-import DotCMSPage from "@/src/views/DotcmsPage";
-import { redirect } from "next/navigation";
 import { PageProps, GenerateMetadataProps, Metadata } from "@/src/types";
+import DotCMSPage from "@/src/views/DotcmsPage";
 
 export async function generateMetadata(
   props: GenerateMetadataProps
