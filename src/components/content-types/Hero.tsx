@@ -6,15 +6,9 @@ import { useState } from "react";
 import imageLoader from "../../utils/imageLoader";
 import Button from "../Button";
 import { HeroProps } from "@/src/types";
+import { DotCMSEditableText } from "@dotcms/react";
 
-const Hero = ({
-  title = "Welcome",
-  caption,
-  inode,
-  image,
-  link,
-  buttonText,
-}: HeroProps) => {
+const Hero = (contentlet: HeroProps) => {
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -23,7 +17,7 @@ const Hero = ({
       aria-label="Hero section"
     >
       {/* Background Image with Error Handling */}
-      {image && !imageError && (
+      {contentlet.image && !imageError && (
         <motion.div
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -32,8 +26,8 @@ const Hero = ({
           aria-hidden="true"
         >
           <Image
-            src={inode!}
-            alt={title}
+            src={contentlet.inode!}
+            alt={contentlet.title}
             fill
             priority
             loader={imageLoader}
@@ -49,16 +43,16 @@ const Hero = ({
       {/* Content */}
       <div className="relative z-30 container mx-auto px-6 py-20 flex flex-col gap-12">
         <div className="max-w-3xl ">
-          {caption && (
+          {contentlet.caption && (
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className={`text-sm md:text-base font-medium  tracking-wider uppercase ${
-                image && !imageError ? "text-amber-300" : "text-amber-600"
+                contentlet.image && !imageError ? "text-amber-300" : "text-amber-600"
               }`}
             >
-              {caption}
+              <DotCMSEditableText fieldName="caption" contentlet={contentlet} />
             </motion.p>
           )}
 
@@ -67,23 +61,23 @@ const Hero = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className={`text-4xl md:text-6xl lg:text-7xl font-bold leading-tight ${
-              image && !imageError ? "text-white" : "text-gray-900"
+              contentlet.image && !imageError ? "text-white" : "text-gray-900"
             }`}
           >
-            {title}
+            <DotCMSEditableText fieldName="title" contentlet={contentlet} />
           </motion.h1>
         </div>
 
-        {buttonText && (
+        {contentlet.buttonText && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-wrap gap-4"
           >
-            {buttonText && (
-              <Button href={link} variant="primary" size="lg">
-                {buttonText}
+            {contentlet.buttonText && (
+              <Button href={contentlet.link} variant="primary" size="lg">
+                {contentlet.buttonText}
               </Button>
             )}
           </motion.div>

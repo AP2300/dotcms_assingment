@@ -60,9 +60,28 @@ export interface Hero {
   caption?: string;
   description?: string;
   image: string;
-  inode?: string;
+  inode: string;
   link?: string;
   buttonText?: string;
+  archived: boolean;
+  baseType: string;
+  contentType: string;
+  folder: string;
+  hasTitleImage: boolean;
+  host: string;
+  hostName: string;
+  identifier: string;
+  languageId: number;
+  live: boolean;
+  locked: boolean;
+  modDate: string;
+  modUser: string;
+  modUserName: string;
+  owner: string;
+  sortOrder: number;
+  stInode: string;
+  titleImage: string;
+  working: boolean;
 }
 
 export interface Recommendation {

@@ -31,13 +31,14 @@ const Footer = ({
           >
             <Link href="/">
               <Image
-                className="dark:invert w-32 h-auto"
+                className="dark:invert"
                 src="/outspire-logo.webp"
                 alt="Outspire logo"
                 width={128}
                 height={26}
                 loader={imageLoader}
                 unoptimized
+                style={{height: "auto", width: "120px"}}
               />
             </Link>
             <p className="text-sm text-gray-400 max-w-xs">
