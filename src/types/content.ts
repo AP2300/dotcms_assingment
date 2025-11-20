@@ -35,6 +35,7 @@ export interface Product {
   inode?: string;
   retailPrice?: number;
   urlMap?: string;
+  salePrice?: string;
 }
 
 export interface Destination {

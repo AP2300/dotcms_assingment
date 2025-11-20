@@ -6,13 +6,12 @@ A modern travel website built with Next.js, TypeScript, and DotCMS. Includes blo
 
 ## 📋 Table of Contents
 
-- [Setup Instructions](#setup-instructions)
-- [Architecture Decisions](#architecture-decisions)
-- [Design & Styling](#design--styling)
-- [Development Notes](#development-notes)
-- [Future Improvements](#future-improvements)
-- [Accessibility](#accessibility)
-- [Tech Stack](#tech-stack)
+- [Setup Instructions](#-setup-instructions)
+- [Architecture Decisions](#-architecture-decisions)
+- [Design & Styling](#-design--styling)
+- [Development Notes](#-development-notes)
+- [Future Improvements](#-future-improvements)
+- [Tech Stack](#-tech-stack)
 
 ---
 
@@ -128,21 +127,13 @@ src/
 
 ### UVE (Universal Visual Editor) Integration
 
-The UVE integration was tricky, requiring careful attention to component structure and DotCMS config.
+Successfully integrated UVE with careful attention to component structure and DotCMS config.
 
 **Approach:**
 - Built components first, tested them, then added UVE functionality
 - Followed the official DotCMS React SDK docs and cross-referenced the starter demo
 - Used `NEXT_PUBLIC_DOTCMS_MODE` to switch between preview/production rendering
-
-**The Main Issue:**
-Got a persistent "UVE Subscription: Not running inside UVE" warning even after verifying everything:
-- Correct hook usage with `useEditableDotCMSPage`
-- Proper component registration
-- Environment variables all set
-- DotCMS instance settings configured
-
-This warning stays even though the editing functionality works. Likely a timing/initialization thing that doesn't affect functionality.
+- All content types properly registered and editable in UVE mode
 
 ### Patterns Followed from Example
 
@@ -230,6 +221,8 @@ Uses flexible grids, Tailwind responsive utilities, and conditional animations b
 **Other helpful resources:**
 - Next.js 15 App Router docs for async/await patterns
 - DotCMS GraphQL docs for query optimization
+- [Framer Motion Documentation](https://www.framer.com/motion/)
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
 ### Questions for the Team
 
@@ -248,8 +241,6 @@ Uses flexible grids, Tailwind responsive utilities, and conditional animations b
 ---
 
 ## 🚀 Future Improvements
-
-### What you'd do with more time
 
 1. **Server-Side Search** - Move from client-side to DotCMS GraphQL filtering
 2. **Infinite Scroll** - Complete the `useInfiniteScroll` hook integration

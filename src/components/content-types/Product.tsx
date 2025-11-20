@@ -15,6 +15,7 @@ const Product = ({
   inode,
   retailPrice,
   urlMap,
+  salePrice,
   ...rest
 }: ProductProps) => {
   const [imageError, setImageError] = useState(false);
@@ -70,6 +71,19 @@ const Product = ({
             </svg>
           </div>
         )}
+
+        {/* Sale Badge */}
+        {salePrice && retailPrice && Number(salePrice) < Number(retailPrice) && (
+          <motion.div
+            className="absolute top-2 right-2 bg-amber-500 text-black px-3 py-1 rounded-full text-sm font-bold"
+            initial={{ scale: 0, rotate: -45 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            Sale
+          </motion.div>
+        )}
       </div>
 
       {/* Content Section */}
@@ -79,11 +93,24 @@ const Product = ({
           <h3 className="text-xl font-bold transition-colors duration-300 line-clamp-3">
             {title}
           </h3>
-          {retailPrice !== undefined && (
-            <span className="text-2xl font-bold whitespace-nowrap">
-              ${retailPrice}
-            </span>
-          )}
+          <div className="flex flex-col items-end">
+            {salePrice && retailPrice && Number(salePrice) < Number(retailPrice) ? (
+              <>
+                <span className="text-lg font-bold text-amber-400">
+                  ${salePrice}
+                </span>
+                <span className="text-sm text-gray-500 line-through">
+                  ${retailPrice}
+                </span>
+              </>
+            ) : (
+              retailPrice !== undefined && (
+                <span className="text-2xl font-bold">
+                  ${retailPrice}
+                </span>
+              )
+            )}
+          </div>
         </div>
 
         {/* Description */}
